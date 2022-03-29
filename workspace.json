@@ -1,4 +1,11 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "dashboard": "apps/dashboard",
+    "dashboard-e2e": "apps/dashboard-e2e",
+    "products": "apps/products",
+    "products-e2e": "apps/products-e2e",
+    "shopping": "apps/shopping",
+    "shopping-e2e": "apps/shopping-e2e"
+  }
 }

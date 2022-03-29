@@ -1,0 +1,115 @@
+{
+  "projectType": "application",
+  "root": "apps/shopping",
+  "sourceRoot": "apps/shopping/src",
+  "prefix": "ng-mfe",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shopping",
+        "index": "apps/shopping/src/index.html",
+        "main": "apps/shopping/src/main.ts",
+        "polyfills": "apps/shopping/src/polyfills.ts",
+        "tsConfig": "apps/shopping/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/shopping/src/favicon.ico", "apps/shopping/src/assets"],
+        "styles": [
+          "apps/shopping/src/styles.scss",
+          "node_modules/primeicons/primeicons.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeng/resources/themes/lara-light-blue/theme.css"
+        ],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/shopping/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/shopping/src/environments/environment.ts",
+              "with": "apps/shopping/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/shopping/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "shopping:build:production"
+        },
+        "development": {
+          "browserTarget": "shopping:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "shopping:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/shopping/src/**/*.ts",
+          "apps/shopping/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/shopping"],
+      "options": {
+        "jestConfig": "apps/shopping/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "serve-mfe": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx serve dashboard",
+          "nx serve products",
+          "nx serve shopping"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
