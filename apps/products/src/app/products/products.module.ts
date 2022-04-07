@@ -1,17 +1,31 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 
+import {ButtonModule} from 'primeng/button';
+
+import {RatingModule} from 'primeng/rating';
+
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+import { ProductService } from '../shared/product.service';
+import {CarouselModule} from 'primeng/carousel';
 
 @NgModule({
-  declarations: [
-    ProductsComponent
-  ],
+  declarations: [ProductsComponent],
   imports: [
-    CommonModule,
-    ProductsRoutingModule
-  ]
+
+    HttpClientModule,
+    RatingModule,
+    HttpClientModule,
+
+    CarouselModule,
+    ButtonModule,
+    HttpClientModule,
+    FormsModule,
+    ProductsRoutingModule],
+    providers:[ProductService]
 })
-export class ProductsModule { }
+export class ProductsModule {}

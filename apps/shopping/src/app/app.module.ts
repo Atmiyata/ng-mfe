@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TabMenuModule } from 'primeng/tabmenu';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     TabMenuModule,

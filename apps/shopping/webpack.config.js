@@ -79,6 +79,18 @@ module.exports = {
           requiredVersion: 'auto',
           includeSecondaries: true,
         },
+        primeng: {
+          singleton:true,
+          strictVersion:true,
+          requiredVersion:'auto',
+          includeSecondaries:true
+        },
+        primeflex: {
+          singleton:true,
+          strictVersion:true,
+          requiredVersion:'auto',
+          includeSecondaries:true
+        },
         ...sharedMappings.getDescriptors(),
       }),
       library: {
