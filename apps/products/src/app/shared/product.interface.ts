@@ -10,3 +10,9 @@ export interface Product {
   image?: string;
   rating?: number;
 }
+
+export enum InventoryStatus {
+  INSTOCK = 'INSTOCK',
+  LOWSTOCK = 'LOWSTOCK',
+  OUTOFSTOCK = 'OUTOFSTOCK'
+}
