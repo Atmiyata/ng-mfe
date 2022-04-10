@@ -17,7 +17,7 @@ export class LikedService {
     let likedProducts: LikedProduct[] = this.likedProduct.value;
 
     if (!product.liked)
-      likedProducts = likedProducts.filter((prod) => prod.id === product.id);
+      likedProducts = likedProducts.filter((prod) => prod.id !== product.id);
     else likedProducts.push(product);
 
     this.likedProduct.next(likedProducts);
