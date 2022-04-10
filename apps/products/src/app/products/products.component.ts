@@ -7,7 +7,6 @@ import { LikedProduct, LikedService } from '@ng-mfe/product-liked';
 import { ProductService } from '../shared/product.service';
 import { Product, InventoryStatus } from '../shared/product.interface';
 
-
 @Component({
   selector: 'ng-mfe-products',
   templateUrl: './products.component.html',
@@ -21,6 +20,12 @@ export class ProductsComponent implements OnInit {
     [InventoryStatus.INSTOCK]: 'success',
     [InventoryStatus.LOWSTOCK]: 'warning',
     [InventoryStatus.OUTOFSTOCK]: 'danger',
+  };
+
+  labelByInventoryStatus = {
+    [InventoryStatus.INSTOCK]: 'IN STOCK',
+    [InventoryStatus.LOWSTOCK]: 'LOW STOCK',
+    [InventoryStatus.OUTOFSTOCK]: 'OUT OF STOCK',
   };
 
   responsiveOptions: Array<{

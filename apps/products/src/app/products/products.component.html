@@ -1,6 +1,6 @@
 <div class="card">
   <p-carousel [value]="(products$ | async)??[]" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
-    [circular]="false" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    [circular]="false" [responsiveOptions]="responsiveOptions">
 
     <ng-template let-product pTemplate="item">
       <div class="product-item">
@@ -12,11 +12,11 @@
           <div>
             <h2 class="mt-1">{{product.name}}</h2>
             <p-tag *ngIf="product.inventoryStatus === 'INSTOCK'" [severity]="severityByInventoryStatus.INSTOCK">
-              {{product.inventoryStatus}}</p-tag>
+              {{labelByInventoryStatus.INSTOCK}}</p-tag>
             <p-tag *ngIf="product.inventoryStatus === 'LOWSTOCK'" [severity]="severityByInventoryStatus.LOWSTOCK">
-              {{product.inventoryStatus}}</p-tag>
+              {{labelByInventoryStatus.LOWSTOCK}}</p-tag>
             <p-tag *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" [severity]="severityByInventoryStatus.OUTOFSTOCK">
-              {{product.inventoryStatus}}</p-tag>
+              {{labelByInventoryStatus.OUTOFSTOCK}}</p-tag>
             <h4 class="">${{product.price}}</h4>
 
             <div class="m-2">
