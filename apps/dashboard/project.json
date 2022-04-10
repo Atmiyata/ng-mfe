@@ -18,7 +18,13 @@
           "apps/dashboard/src/favicon.ico",
           "apps/dashboard/src/assets"
         ],
-        "styles": ["apps/dashboard/src/styles.scss"],
+        "styles": [
+          "apps/dashboard/src/styles.scss",
+          "node_modules/primeicons/primeicons.css",
+          "node_modules/primeflex/primeflex.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeng/resources/themes/lara-light-blue/theme.css"
+        ],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/dashboard/webpack.config.js"

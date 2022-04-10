@@ -21,6 +21,7 @@ const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
   tsConfigPath,
   [
+    '@ng-mfe/product-liked'
     /* mapped paths to share */
   ],
   workspaceRootPath

@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<p-card styleClass="h-10rem w-10rem m-5">
+  <ng-template pTemplate="header">
+
+    <div class="flex">
+      <button pButton icon="pi pi-heart" type="button"  class="m-1 p-button-raised p-button-danger"></button>
+      <h2 class="ml-2">
+        Liked
+      </h2>
+    </div>
+    <h1 class="text-center">{{(likedProducts$ | async)?.length}}</h1>
+  </ng-template>
+</p-card>

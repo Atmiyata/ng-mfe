@@ -3,6 +3,7 @@
   "projects": {
     "dashboard": "apps/dashboard",
     "dashboard-e2e": "apps/dashboard-e2e",
+    "product-liked": "libs/product-liked",
     "products": "apps/products",
     "products-e2e": "apps/products-e2e",
     "shopping": "apps/shopping",

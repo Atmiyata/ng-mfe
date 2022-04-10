@@ -1,8 +1,12 @@
-import { of, map, Observable } from 'rxjs';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { of, map, Observable, combineLatest } from 'rxjs';
+import { OnInit, Component, ChangeDetectionStrategy } from '@angular/core';
+
+//sahred likedproduct
+import { LikedProduct, LikedService } from '@ng-mfe/product-liked';
 
 import { ProductService } from '../shared/product.service';
 import { Product, InventoryStatus } from '../shared/product.interface';
+
 
 @Component({
   selector: 'ng-mfe-products',
@@ -10,7 +14,7 @@ import { Product, InventoryStatus } from '../shared/product.interface';
   styleUrls: ['./products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   products$: Observable<Product[]> = of([]);
 
   severityByInventoryStatus = {
@@ -25,10 +29,12 @@ export class ProductsComponent {
     numScroll: number;
   }> = [];
 
-  constructor(private productService: ProductService) {
-    this.products$ = this.productService
-      .getProducts()
-      .pipe(map((res: { data: Product[] }) => res?.data));
+  constructor(
+    private productService: ProductService,
+    private likedProductService: LikedService
+  ) {}
+
+  ngOnInit(): void {
     this.responsiveOptions = [
       {
         breakpoint: '1024px',
@@ -46,5 +52,29 @@ export class ProductsComponent {
         numScroll: 1,
       },
     ];
+
+    //preselect liked product after navigating from different route
+    this.products$ = combineLatest([
+      this.getProducts(),
+      this.likedProductService.likedProduct$,
+    ]).pipe(
+      map(([products, likedProducts]) =>
+        products.map((product) => ({
+          ...product,
+          liked: likedProducts.findIndex((p) => p.id === product.id) !== -1,
+        }))
+      )
+    );
+  }
+
+  likeProduct(product: LikedProduct) {
+    product.liked = !product.liked;
+    this.likedProductService.setLikeProduct(product);
+  }
+
+  private getProducts(): Observable<Product[]> {
+    return this.productService
+      .getProducts()
+      .pipe(map((res: { data: Product[] }) => res?.data));
   }
 }

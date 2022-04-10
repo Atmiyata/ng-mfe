@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/product-liked",
+  "sourceRoot": "libs/product-liked/src",
+  "prefix": "ng-mfe",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/product-liked"],
+      "options": {
+        "jestConfig": "libs/product-liked/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/product-liked/src/**/*.ts",
+          "libs/product-liked/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

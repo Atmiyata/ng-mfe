@@ -1,26 +1,36 @@
 <div class="card">
-  <p-carousel [value]="(products$ | async)??[]" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="false" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+  <p-carousel [value]="(products$ | async)??[]" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1"
+    [circular]="false" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
 
     <ng-template let-product pTemplate="item">
-        <div class="product-item">
-            <div class="product-item-content">
-              <div class="mb-3">
-                <img src="assets/images/product/{{product.image}}" [alt]="product.name" class="product-image" />
+      <div class="product-item">
+        <div class="product-item-content">
+          <div class="mb-3">
+            <img src="assets/images/product/{{product.image}}" [alt]="product.name" class="product-image" />
+          </div>
+
+          <div>
+            <h2 class="mt-1">{{product.name}}</h2>
+            <p-tag *ngIf="product.inventoryStatus === 'INSTOCK'" [severity]="severityByInventoryStatus.INSTOCK">
+              {{product.inventoryStatus}}</p-tag>
+            <p-tag *ngIf="product.inventoryStatus === 'LOWSTOCK'" [severity]="severityByInventoryStatus.LOWSTOCK">
+              {{product.inventoryStatus}}</p-tag>
+            <p-tag *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" [severity]="severityByInventoryStatus.OUTOFSTOCK">
+              {{product.inventoryStatus}}</p-tag>
+            <h4 class="">${{product.price}}</h4>
+
+            <div class="m-2">
+              <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
             </div>
 
-                <div>
-                    <h3 class="p-mb-1">{{product.name}}</h3>
-                    <h4 class="p-mt-0 p-mb-3">${{product.price}}</h4>
-                    <p-tag *ngIf="product.inventoryStatus === 'INSTOCK'" [severity]="severityByInventoryStatus.INSTOCK">{{product.inventoryStatus}}</p-tag>
-                    <p-tag *ngIf="product.inventoryStatus === 'LOWSTOCK'" [severity]="severityByInventoryStatus.LOWSTOCK">{{product.inventoryStatus}}</p-tag>
-                    <p-tag *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" [severity]="severityByInventoryStatus.OUTOFSTOCK">{{product.inventoryStatus}}</p-tag>
-                    <div class="car-buttons p-mt-5">
-                      <button pButton pRipple type="button" icon="pi pi-heart" class="p-button-rounded p-button-danger"></button>
-                      <button pButton pRipple type="button" icon="pi pi-shopping-cart" class="p-button-warning p-button-rounded"></button>
-                    </div>
-                </div>
+            <div class="flex flex-column align-items-center">
+              <button pButton type="button" icon="pi pi-heart"
+                class="p-button-rounded p-button-danger" [ngClass]="{'p-button-outlined':!product.liked}" (click)="likeProduct(product)"></button>
+                <button pButton type="button" label="Add to cart" icon="pi pi-shopping-cart" iconPos="left" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button>
             </div>
+          </div>
         </div>
+      </div>
     </ng-template>
-</p-carousel>
+  </p-carousel>
 </div>
